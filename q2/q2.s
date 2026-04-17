@@ -85,7 +85,7 @@ completed:
 print:
     bge s6,s3,exit
     addi t1,s3,-1
-    be s6,t1,ex
+    beq s6,t1,ex
     la a0,fmt
     slli t0,s6,2
     add t0,s1,t0
