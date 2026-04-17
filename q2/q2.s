@@ -1,5 +1,6 @@
 .data
 fmt: .asciz "%d "
+fm: .asciz "%d"
 new: .asciz "\n"
 .text
 .globl main
@@ -83,6 +84,8 @@ completed:
     li s6,0
 print:
     bge s6,s3,exit
+    addi t1,s3,-1
+    be s6,t1,ex
     la a0,fmt
     slli t0,s6,2
     add t0,s1,t0
@@ -91,6 +94,12 @@ print:
     
     addi s6,s6,1
     j print
+ex:
+    la a0,fm
+    slli t0,s6,2
+    add t0,s1,t0
+    lw a1,0(t0)
+    call printf
 exit:
     la a0,new
     call printf
